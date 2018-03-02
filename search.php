@@ -9,7 +9,7 @@
                 <?php if (have_posts()) : ?>
 
                     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                        
+
                         <h1>Výsledky hľadania pre <?php the_search_query(); ?></h1>
 
                         <?php while (have_posts()) : the_post(); ?>
