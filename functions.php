@@ -1,5 +1,77 @@
 <?php
 
+function template_setup() {
+    add_theme_support('post-thumbnails');
+    add_theme_support('custom-header');
+    add_theme_support('title-tag');
+}
+
+add_action('after_setup_theme', 'template_setup');
+
+
+add_action('admin_menu', 'add_global_custom_options');
+
+function add_global_custom_options() {
+    add_options_page('Globálne nastavenia', 'Globálne nastavenia', 'manage_options', 'functions','global_custom_options');
+}
+
+function global_custom_options() {
+?>
+
+    <h2>Globálne nastavenia</h2>
+    <form method="post" action="options.php">
+    <?php wp_nonce_field('update-options') ?>
+
+        <table>
+
+            <tr>
+                <td><label>URL pre Facebook: </label></td>
+                <td><input type="text" name="facebookurl" size="100" value="<?php echo get_option('facebookurl'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>URL pre Instagram: </label></td>
+                <td><input type="text" name="instagramurl" size="100" value="<?php echo get_option('instagramurl'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Ulica: </label></td>
+                <td><input type="text" name="companystreet" size="100" value="<?php echo get_option('companystreet'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Mesto: </label></td>
+                <td><input type="text" name="companycity" size="100" value="<?php echo get_option('companycity'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>PSČ: </label></td>
+                <td><input type="text" name="companyzip" size="100" value="<?php echo get_option('companyzip'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Email: </label></td>
+                <td><input type="text" name="companyemail" size="100" value="<?php echo get_option('companyemail'); ?>" /></td>
+            </tr>
+
+            <tr>
+                <td><label>Phone: </label></td>
+                <td><input type="text" name="companyphone" size="100" value="<?php echo get_option('companyphone'); ?>" /></td>
+            </tr>
+
+
+            <tr><td colspan="2"><input type="submit" name="Submit" value="Uložiť" /></td></tr>
+            <input type="hidden" name="action" value="update" />
+            <input type="hidden" name="page_options" value="facebookurl,instagramurl,companystreet,companycity,companyemail,companyphone,companyzip" />
+        </table>
+    </form>
+
+
+    <?php
+}
+
+
+
 function print_hp_menu($menu_name) {
 
     $menuitems = wp_get_nav_menu_items($menu_name);
