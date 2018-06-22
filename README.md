@@ -1,5 +1,5 @@
 # blankstrap4
-Blank bootstrap 4 template
+Blank bootstrap 4 template for WordPress
 
 Bootstrap 4.0.0
 Jquery 3.3.1
